@@ -23,7 +23,7 @@ spec:
         
         # 2. Gdzie w kontenerze zamontowane jest PVC
         - --root=/tmp/git-data/sync
-        - --existed-before-init=true
+        
         
         # 3. Nazwa podfolderu na PVC, do którego trafią pliki (np. /tmp/git-data/pliki)
         - --dest=pliki                 
