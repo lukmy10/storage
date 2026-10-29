@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: git-to-pvc-synchronizer
-  namespace: jenkins # Upewnij się, że to ten sam namespace, w którym jest PVC
+  namespace: argocd # Upewnij się, że to ten sam namespace, w którym jest PVC
 spec:
   replicas: 1
   selector:
@@ -18,16 +18,16 @@ spec:
         image: registry.k8s.io/git-sync/git-sync:v4.2.3
         args:
         # 1. Konfiguracja Twojego repozytorium Git z plikami
-        - --repo=https://github.com
+        - --repo=https://github.com/lukmy10/storage
         - --branch=main
         
         # 2. Gdzie w kontenerze zamontowane jest PVC
-        - --root=/tmp/git-data
+        - --root=/app
         
         # 3. Nazwa podfolderu na PVC, do którego trafią pliki (np. /tmp/git-data/pliki)
         - --dest=pliki                 
         
-        # 4. Jak często (w sekundach) sprawdzać Git i dociągać nowe pliki
+        # 4. Jak czesto (w sekundach) sprawdzać Git i dociągać nowe pliki
         - --wait=60                    
         
         resources:
@@ -45,4 +45,4 @@ spec:
       - name: target-pvc-volume
         persistentVolumeClaim:
           # 5. Wpisz dokładnie nazwę swojego ISTNIEJĄCEGO dysku PVC
-          claimName: rbd-pvc-nginx-jenkins
+          claimName: rbd-pvc-nginx-argocd
