@@ -13,6 +13,13 @@ spec:
       labels:
         app: git-synchronizer
     spec:
+      # KROK 1: Nadpisujemy właściciela wolumenu na poziomie całego Poda.
+      # Kubernetes automatycznie wykona odpowiednik 'chown' na nowym PVC dla grupy 65533
+      securityContext:
+        fsGroup: 65533 
+        runAsGroup: 65533
+        runAsUser: 65533  
+    
       containers:
       - name: git-sync
         image: registry.k8s.io/git-sync/git-sync:v4.2.3
