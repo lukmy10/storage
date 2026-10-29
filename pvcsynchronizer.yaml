@@ -22,7 +22,7 @@ spec:
         - --branch=main
         
         # 2. Gdzie w kontenerze zamontowane jest PVC
-        - --root=/app
+        - --root=/tmp/git-data
         
         # 3. Nazwa podfolderu na PVC, do którego trafią pliki (np. /tmp/git-data/pliki)
         - --dest=pliki                 
