@@ -53,4 +53,4 @@ spec:
       - name: target-pvc-volume
         persistentVolumeClaim:
           # 5. Wpisz dokładnie nazwę swojego ISTNIEJĄCEGO dysku PVC
-          claimName: rbd-pvc-nginx-argocd
+          claimName: rbd-pvc-sync-argocd
